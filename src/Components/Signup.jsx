@@ -1,10 +1,12 @@
 import React, {useRef, useState} from 'react';
 import {useAuth} from "../Context/AuthContext";
+import {Link, useNavigate} from "react-router-dom";
 
 function Signup() {
-    const { signup } = useAuth();
+    const {signup, currentUser } = useAuth();
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
+    const navigate  = useNavigate();
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -17,6 +19,7 @@ function Signup() {
             setError('')
             setLoading(true)
             await signup(e.target.email.value, e.target.password.value)
+            navigate('/')
         } catch {
             setError('failed to create an account')
         }
@@ -25,6 +28,7 @@ function Signup() {
     return (
         <div>
            <div className="flex flex-col items-center min-h-screen pt-6 sm:justify-center sm:pt-0 bg-gray-50">
+
                {error &&  <div
                    className="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800"
                    role="alert">
@@ -84,9 +88,7 @@ function Signup() {
                    <div className="mt-4 text-grey-600 text-center">
                        Already have an account?{" "}
                        <span>
-                            <a className="text-purple-600 hover:underline" href="#">
-                                Log in
-                            </a>
+                           <Link className="text-purple-600 hover:underline" to="/login">Log In</Link>
                         </span>
                    </div>
                </div>
