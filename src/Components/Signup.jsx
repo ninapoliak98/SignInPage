@@ -19,7 +19,7 @@ function Signup() {
             setError('')
             setLoading(true)
             await signup(e.target.email.value, e.target.password.value)
-            navigate('/')
+            navigate('/login')
         } catch {
             setError('failed to create an account')
         }
@@ -88,7 +88,7 @@ function Signup() {
                    <div className="mt-4 text-grey-600 text-center">
                        Already have an account?{" "}
                        <span>
-                           <Link className="text-purple-600 hover:underline" to="/login">Log In</Link>
+                           <Link className="text-purple-600 hover:underline" to="/login">Login</Link>
                         </span>
                    </div>
                </div>

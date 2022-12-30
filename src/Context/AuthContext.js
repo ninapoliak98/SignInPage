@@ -20,6 +20,9 @@ export function AuthProvider({children}) {
     function logout() {
         return auth.signOut();
     }
+    function passwordReset(email) {
+        return auth.sendPasswordResetEmail(email);
+    }
     useEffect(() => {
         return auth.onAuthStateChanged(user => {
             setCurrentUser(user)
@@ -32,7 +35,8 @@ export function AuthProvider({children}) {
         currentUser,
         login,
         logout,
-        signup
+        signup,
+        passwordReset
     }
     return (
         <AuthContext.Provider value={value}>
